@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Countdown to My Love's Arrival</title>
+  <style>
+    body {
+      font-family: 'Arial Rounded MT Bold', Arial, sans-serif;
+      background: linear-gradient(135deg, #B53389, #30D5C8);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      color: #fff;
+      text-align: center;
+      overflow: hidden;
+    }
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 30px;
+    }
+    #countdown {
+      display: flex;
+      gap: 15px;
+      font-size: 1.5rem;
+    }
+    .time-box {
+      background: rgba(255, 255, 255, 0.2);
+      padding: 15px;
+      border-radius: 15px;
+      min-width: 70px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+    .number {
+      font-size: 1.8rem;
+      font-weight: bold;
+      display: block;
+    }
+    .label {
+      font-size: 0.8rem;
+      opacity: 0.8;
+    }
+    #love-icons {
+      position: relative;
+      width: 100%;
+      height: 150px;
+      margin: 40px 0;
+    }
+    .icon {
+      position: absolute;
+      top: 50%;
+      width: 60px;
+      height: 60px;
+      transform: translateY(-50%);
+      transition: left 1s;
+    }
+    footer {
+      position: absolute;
+      bottom: 20px;
+      font-size: 0.9rem;
+      opacity: 0.9;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      justify-content: center;
+    }
+    footer img {
+      width: 24px;
+      height: 24px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Countdown until my love arrives in Iceland 💙</h1>
+
+  <div id="love-icons">
+    <img src="https://github.com/jpoker82-design/Wife-arrival/blob/main/Face1990.png?raw=true" class="icon" id="icon1" style="left: 0%;" />
+    <img src="https://cdn-icons-png.flaticon.com/512/10/10544.png" class="icon" id="icon2" style="left: 90%;" />
+  </div>
+
+  <div id="countdown">
+    <div class="time-box"><span class="number" id="days">0</span><span class="label">Days</span></div>
+    <div class="time-box"><span class="number" id="hours">0</span><span class="label">Hours</span></div>
+    <div class="time-box"><span class="number" id="minutes">0</span><span class="label">Minutes</span></div>
+    <div class="time-box"><span class="number" id="seconds">0</span><span class="label">Seconds</span></div>
+  </div>
+
+  <footer>
+    <span>💫 Kurkkumuijaa odotellessa 💫</span>
+    <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fstatic.vecteezy.com%2Fsystem%2Fresources%2Fpreviews%2F016%2F395%2F839%2Foriginal%2Fcute-kawaii-cucumber-cartoon-icon-illustration-food-vegitable-flat-icon-concept-isolated-on-white-background-cucumber-character-mascot-in-doodle-style-vector.jpg&f=1&nofb=1&ipt=4b8991df8813cfeff7aacc02546e56c1984bd00d3a7ecadbb9fb7151189c347d" alt="heart" />
+  </footer>
+
+  <script>
+    const targetDate = new Date("2025-09-18T16:30:00+00:00").getTime();
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const diff = targetDate - now;
+
+      if (diff <= 0) {
+        document.getElementById("countdown").innerHTML = "She is here 💕";
+        document.getElementById("icon1").style.left = "45%";
+        document.getElementById("icon2").style.left = "45%";
+        return;
+      }
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+      document.getElementById("days").textContent = days;
+      document.getElementById("hours").textContent = hours;
+      document.getElementById("minutes").textContent = minutes;
+      document.getElementById("seconds").textContent = seconds;
+
+      // Move icons closer over time
+      const totalDuration = targetDate - new Date().getTime();
+      const progress = 1 - diff / totalDuration;
+      document.getElementById("icon1").style.left = `${10 + progress * 35}%`;
+      document.getElementById("icon2").style.left = `${90 - progress * 45}%`;
+    }
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+  </script>
+</body>
+</html>
